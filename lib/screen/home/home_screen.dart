@@ -56,7 +56,11 @@ class _HomePageState extends State<HomePage> {
             RadialGauge(con: _con),
             TimePickerRow(con: _con),
             40.height,
-            const Text("Average Sleeping Hours",style: TextStyle(color: Colors.white,fontSize: 15),),
+            Obx(
+                () {
+                return Text(_con.sleepingHourTitle(),style: const TextStyle(color: Colors.white,fontSize: 15),);
+              }
+            ),
             10.height,
             linearGauge(_con),
           ],

@@ -23,6 +23,11 @@ Padding linearGauge(HomeController _con) {
                 position: LinearElementPosition.outside,
                 value: _con.barPointerValue.value,
                 onChanged: (value) {
+                  (value > _con.barPointerValue.value)?{
+                    _con.selectedEndTime.value = _con.selectedEndTime.value.replacing(hour: _con.selectedEndTime.value.hour  + (value - _con.selectedEndTime.value.hour).toInt(),minute: _con.selectedEndTime.value.minute)
+                  }:{
+                    _con.selectedEndTime.value = _con.selectedEndTime.value.replacing(hour: _con.selectedEndTime.value.hour  - ( _con.selectedEndTime.value.hour - value ).toInt(),minute: _con.selectedEndTime.value.minute)
+                  };
                   _con.barPointerValue.value = value;
                 },
                 child: Container(

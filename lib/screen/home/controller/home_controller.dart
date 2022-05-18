@@ -16,8 +16,27 @@ class HomeController extends GetxController{
 
 
   calculateTime() {
-    return ((24.0 - selectedTime.value.hour + selectedTime.value.minute / 60) + (selectedEndTime.value.hour + selectedEndTime.value.minute / 60));
+    return (selectedTime.value.hour > 12)?((24.0 - selectedTime.value.hour + selectedTime.value.minute / 60) + (selectedEndTime.value.hour + selectedEndTime.value.minute / 60)):((selectedEndTime.value.hour + selectedEndTime.value.minute / 60) - (selectedTime.value.hour + selectedTime.value.minute / 60));
 }
+
+ String sleepingHourTitle(){
+    String value = "Sleeping Hours" ;
+    if(barPointerValue.value.isNegative){
+      value = "Please Select the Relevant Time :(";
+    }
+    if(barPointerValue.value >= 2 && barPointerValue.value <= 5){
+      value = "Blow Average Sleeping Hour";
+    }
+    if(barPointerValue.value > 5 && barPointerValue.value <= 8){
+      value = "Average Sleeping Hour";
+    }
+    if(barPointerValue.value > 8){
+      value = "Above Average Sleeping Hour";
+    }
+    return value;
+ }
+
+
 ///Round Icon Button
   roundIconButton(BuildContext context, IconData iconData) {
     return GestureDetector(
