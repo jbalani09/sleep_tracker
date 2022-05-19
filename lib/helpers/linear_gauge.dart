@@ -23,13 +23,36 @@ Padding linearGauge(HomeController _con) {
                 position: LinearElementPosition.outside,
                 value: _con.barPointerValue.value,
                 onChanged: (value) {
-                  (value > _con.barPointerValue.value)?{
-                    _con.selectedEndTime.value = _con.selectedEndTime.value.replacing(hour: _con.selectedEndTime.value.hour  + (value - _con.selectedEndTime.value.hour).toInt(),minute: _con.selectedEndTime.value.minute)
-                  }:{
-                    _con.selectedEndTime.value = _con.selectedEndTime.value.replacing(hour: _con.selectedEndTime.value.hour  - ( _con.selectedEndTime.value.hour - value ).toInt(),minute: _con.selectedEndTime.value.minute)
-                  };
-                  _con.barPointerValue.value = value;
-                },
+                  (_con.selectedTime.value.hour < 12)
+                  ? _con.selectedEndTime.value = _con.selectedTime.value
+                      .replacing(
+                          hour: (_con.selectedTime.value.hour + value).toInt(),
+                          minute: _con.selectedTime.value.minute)
+                  : {
+                      (value > _con.barPointerValue.value &&
+                              _con.barPointerValue.value > 1)
+                          ? {
+                              _con.selectedEndTime.value =
+                                  _con.selectedTime.value.replacing(
+                                      hour: (_con.selectedTime.value.hour +
+                                              value -
+                                              12)
+                                          .toInt(),
+                                      minute: _con.selectedTime.value.minute)
+                            }
+                          : {
+                              _con.selectedEndTime.value = _con
+                                      .selectedEndTime.value =
+                                  _con.selectedTime.value.replacing(
+                                      hour: (_con.selectedTime.value.hour +
+                                              value -
+                                              12)
+                                          .toInt(),
+                                      minute: _con.selectedTime.value.minute)
+                            }
+                    };
+              _con.barPointerValue.value = value;
+            },
                 child: Container(
                     height: 20,
                     width: 20,

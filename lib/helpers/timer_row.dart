@@ -49,8 +49,8 @@ class TimePickerRow extends StatelessWidget {
               confirmText: "CONFIRM",
               cancelText: "Cancel",
               helpText: "Sleep Start Time",
-            )??const TimeOfDay(hour: 21, minute: 30);
-            _con.barPointerValue.value = _con.calculateTime();
+            )??const TimeOfDay(hour: 21, minute: 00);
+            _con.barPointerValue.value = (_con.calculateTime().isNegative)?0.0:_con.calculateTime();
           },
           child: Container(
             height: MediaQuery.of(context).size.height * 0.12,
@@ -113,8 +113,8 @@ class TimePickerRow extends StatelessWidget {
               confirmText: "CONFIRM",
               cancelText: "Cancel",
               helpText: "Sleep End Time",
-            )??const TimeOfDay(hour: 06, minute: 30);
-            _con.barPointerValue.value = _con.calculateTime();
+            )??const TimeOfDay(hour: 05, minute: 00);
+            _con.barPointerValue.value = (_con.calculateTime().isNegative)?0.0:_con.calculateTime();
           },
           child: Container(
             height: MediaQuery.of(context).size.height * 0.12,

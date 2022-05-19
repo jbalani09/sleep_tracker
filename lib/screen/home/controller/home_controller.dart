@@ -10,18 +10,18 @@ class HomeController extends GetxController{
 
   RxDouble barPointerValue = 8.0.obs;
 
-  Rx<TimeOfDay> selectedTime = const TimeOfDay(hour: 21, minute: 30).obs;
+  Rx<TimeOfDay> selectedTime = const TimeOfDay(hour: 21, minute: 00).obs;
 
-  Rx<TimeOfDay> selectedEndTime = const TimeOfDay(hour: 06, minute: 30).obs;
+  Rx<TimeOfDay> selectedEndTime = const TimeOfDay(hour: 05, minute: 00).obs;
 
 
-  calculateTime() {
+  double calculateTime() {
     return (selectedTime.value.hour > 12)?((24.0 - selectedTime.value.hour + selectedTime.value.minute / 60) + (selectedEndTime.value.hour + selectedEndTime.value.minute / 60)):((selectedEndTime.value.hour + selectedEndTime.value.minute / 60) - (selectedTime.value.hour + selectedTime.value.minute / 60));
 }
 
  String sleepingHourTitle(){
     String value = "Sleeping Hours" ;
-    if(barPointerValue.value.isNegative){
+    if(barPointerValue.value.isNegative && barPointerValue.value < 1){
       value = "Please Select the Relevant Time :(";
     }
     if(barPointerValue.value >= 2 && barPointerValue.value <= 5){
