@@ -7,8 +7,8 @@ import 'package:sleeptracker/helpers/linear_gauge.dart';
 import 'package:sleeptracker/helpers/radial_gauge.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-import '../../helpers/timer_row.dart';
-import 'controller/home_controller.dart';
+import '../../../helpers/timer_row.dart';
+import '../controller/home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

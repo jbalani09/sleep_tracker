@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleeptracker/screen/home/home_screen.dart';
+import 'package:sleeptracker/screen/home/view/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
